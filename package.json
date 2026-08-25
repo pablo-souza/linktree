@@ -1,0 +1,6 @@
+{
+  "name": "linktree-google-sheets",
+  "private": true,
+  "type": "module",
+  "scripts": { "test": "node --test" }
+}
