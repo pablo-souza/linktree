@@ -3,9 +3,11 @@ import { parseCsv } from './csv.js';
 import { normalizeConfig, normalizeLinks, validateImageUrl } from './validators.js';
 
 const ICONS = Object.freeze({
-  instagram: '◎', whatsapp: '◉', youtube: '▶', github: '⌘',
-  linkedin: 'in', globe: '◌', email: '✉', link: '↗',
+  instagram: '◎', whatsapp: '◉', youtube: '▷', github: '⌘',
+  linkedin: 'in', globe: '◇', email: '✉', link: '↗',
 });
+
+const DEFAULT_AVATAR = './assets/brasao-john-knox.jpg';
 
 const elements = {
   profile: document.querySelector('#profile'),
@@ -45,9 +47,12 @@ function renderProfile(config) {
   document.title = title;
   elements.description.textContent = config.description || '';
   elements.description.hidden = !config.description;
-  elements.avatar.src = validateImageUrl(config.avatar) || './assets/default-avatar.svg';
+  elements.avatar.src = validateImageUrl(config.avatar) || DEFAULT_AVATAR;
   elements.avatar.alt = config.avatar ? `Avatar de ${title}` : '';
-  elements.avatar.onerror = () => { elements.avatar.src = './assets/default-avatar.svg'; elements.avatar.alt = ''; };
+  elements.avatar.onerror = () => {
+    if (!elements.avatar.src.endsWith('/assets/brasao-john-knox.jpg')) elements.avatar.src = DEFAULT_AVATAR;
+    elements.avatar.alt = '';
+  };
   elements.profile.hidden = false;
 }
 
