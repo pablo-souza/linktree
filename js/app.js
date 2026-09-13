@@ -7,7 +7,7 @@ const ICONS = Object.freeze({
   linkedin: 'in', globe: '◇', email: '✉', link: '↗',
 });
 
-const DEFAULT_AVATAR = './assets/brasao-john-knox.jpg';
+const DEFAULT_AVATAR = './assets/selo-coragem-conviccao.png';
 
 const elements = {
   profile: document.querySelector('#profile'),
@@ -18,6 +18,7 @@ const elements = {
   list: document.querySelector('#link-list'),
   retry: document.querySelector('#retry-button'),
   footer: document.querySelector('#footer'),
+  footerText: document.querySelector('#footer-text'),
 };
 
 export async function fetchSheet(url) {
@@ -50,7 +51,7 @@ function renderProfile(config) {
   elements.avatar.src = validateImageUrl(config.avatar) || DEFAULT_AVATAR;
   elements.avatar.alt = config.avatar ? `Avatar de ${title}` : '';
   elements.avatar.onerror = () => {
-    if (!elements.avatar.src.endsWith('/assets/brasao-john-knox.jpg')) elements.avatar.src = DEFAULT_AVATAR;
+    if (!elements.avatar.src.endsWith('/assets/selo-coragem-conviccao.png')) elements.avatar.src = DEFAULT_AVATAR;
     elements.avatar.alt = '';
   };
   elements.profile.hidden = false;
@@ -86,8 +87,9 @@ function renderLinks(links) {
 }
 
 function renderFooter(config) {
-  elements.footer.textContent = config.footer || '';
-  elements.footer.hidden = !config.footer;
+  elements.footerText.textContent = config.footer || '';
+  elements.footerText.hidden = !config.footer;
+  elements.footer.hidden = false;
 }
 
 export async function loadApp() {

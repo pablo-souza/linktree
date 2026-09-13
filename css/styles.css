@@ -1,38 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap');
 
 :root {
-  color-scheme: light;
-  --navy: #073b64;
-  --navy-deep: #022d50;
-  --ink: #052f55;
-  --gold: #c9a466;
-  --paper: #fbfaf6;
+  color-scheme: dark;
+  --navy: #003a56;
+  --navy-deep: #002d43;
+  --white: #f3f3f0;
+  --muted-white: #c8c9c9;
   font-family: Montserrat, ui-sans-serif, system-ui, sans-serif;
-  color: var(--ink);
-  background: var(--paper);
+  color: var(--white);
+  background-color: var(--navy-deep);
   font-synthesis: none;
 }
 
 * { box-sizing: border-box; }
 
+html {
+  min-width: 20rem;
+  min-height: 100%;
+  background-color: var(--navy-deep);
+  background-image: url('../assets/fundo-coragem-conviccao.jpg');
+  /* Mantém 1920 × 1080 em telas menores e amplia proporcionalmente nas maiores. */
+  background-size: max(1920px, 100vw, 177.778vh) auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 body {
   min-height: 100vh;
+  min-height: 100svh;
   margin: 0;
-  background-color: var(--paper);
-  background-image:
-    radial-gradient(circle at 50% 28%, rgb(255 255 255 / 95%) 0 20rem, transparent 43rem),
-    repeating-radial-gradient(ellipse at 10% 38%, transparent 0 25px, rgb(7 59 100 / 2.4%) 26px 27px, transparent 28px 43px),
-    repeating-radial-gradient(ellipse at 90% 48%, transparent 0 30px, rgb(201 164 102 / 2.8%) 31px 32px, transparent 33px 50px);
-  overflow-x: hidden;
+  background: rgb(0 31 47 / 10%);
 }
 
 .container {
-  position: relative;
-  z-index: 0;
-  width: min(calc(100% - 2rem), 42rem);
+  width: min(calc(100% - 2rem), 38rem);
   min-height: 100vh;
+  min-height: 100svh;
   margin-inline: auto;
-  padding: 2rem 0 11rem;
+  padding: clamp(1.5rem, 5vh, 3.5rem) 0 1.5rem;
   display: flex;
   flex-direction: column;
 }
@@ -41,136 +47,87 @@ body {
 
 .profile__avatar {
   display: block;
-  width: clamp(8.5rem, 35vw, 11rem);
-  height: clamp(8.5rem, 35vw, 11rem);
-  margin: 0 auto .9rem;
-  border-radius: 50%;
-  object-fit: cover;
-  background: #fff;
-  box-shadow: 0 8px 28px rgb(5 47 85 / 12%);
+  width: min(100%, 34rem);
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+  filter: drop-shadow(0 .55rem 1rem rgb(0 16 25 / 28%));
 }
 
-.profile__ornament {
-  width: min(14rem, 52vw);
-  height: 1rem;
-  margin: 0 auto 1rem;
-  display: flex;
-  align-items: center;
-  gap: .5rem;
+.links {
+  width: min(100%, 34rem);
+  margin: clamp(1.7rem, 4vh, 3rem) auto 0;
 }
 
-.profile__ornament::before,
-.profile__ornament::after {
-  content: "";
-  height: 1px;
-  flex: 1;
-  background: linear-gradient(90deg, transparent, var(--gold));
+.link-list {
+  display: grid;
+  gap: .75rem;
 }
-
-.profile__ornament::after { transform: scaleX(-1); }
-
-.profile__ornament span {
-  width: .48rem;
-  height: .48rem;
-  border: 1px solid var(--gold);
-  transform: rotate(45deg);
-}
-
-.profile__title {
-  margin: 0;
-  color: var(--ink);
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(2.25rem, 8vw, 3.35rem);
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -.025em;
-  text-wrap: balance;
-}
-
-.profile__description {
-  max-width: 31rem;
-  margin: .65rem auto 0;
-  color: #48647d;
-  font-size: clamp(.95rem, 3.8vw, 1.15rem);
-  line-height: 1.55;
-}
-
-.links { margin-top: 1.65rem; }
-.link-list { display: grid; gap: .7rem; }
 
 .link-card {
-  position: relative;
   display: grid;
-  grid-template-columns: 2.6rem 1fr 2.6rem;
+  grid-template-columns: 2.75rem 1fr 2.75rem;
   align-items: center;
-  min-height: 4.35rem;
-  padding: .6rem .85rem;
-  border: 1.5px solid var(--navy);
-  border-radius: .5rem;
-  color: var(--ink);
-  background: rgb(255 255 255 / 74%);
-  box-shadow: 0 5px 14px rgb(5 47 85 / 8%);
+  min-height: 4.2rem;
+  padding: .55rem .8rem;
+  border: 1px solid rgb(243 243 240 / 72%);
+  border-radius: .35rem;
+  color: var(--white);
+  background: rgb(0 42 63 / 54%);
+  box-shadow: 0 .45rem 1.25rem rgb(0 15 24 / 18%);
   text-decoration: none;
-  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+  backdrop-filter: blur(2px);
+  transition: color 160ms ease, background-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
 }
 
 .link-card:hover {
   transform: translateY(-2px);
-  background: #fff;
-  box-shadow: 0 9px 22px rgb(5 47 85 / 16%);
+  border-color: var(--white);
+  background: rgb(0 60 86 / 88%);
+  box-shadow: 0 .7rem 1.5rem rgb(0 15 24 / 30%);
 }
 
 .link-card:focus-visible,
 .retry-button:focus-visible {
-  outline: 3px solid var(--gold);
-  outline-offset: 3px;
+  outline: 3px solid var(--white);
+  outline-offset: 4px;
 }
 
 .link-card--highlight {
-  border-color: var(--navy);
-  color: #fff;
-  background: linear-gradient(120deg, #064b78, var(--navy-deep));
-  box-shadow: 0 8px 20px rgb(2 45 80 / 24%);
+  color: var(--navy-deep);
+  background: var(--white);
+  box-shadow: 0 .65rem 1.6rem rgb(0 15 24 / 34%);
 }
 
-.link-card--highlight:hover { background: linear-gradient(120deg, #075888, #03365e); }
-.link-card--highlight::after { display: none; }
+.link-card--highlight:hover { background: #fff; }
 
-.link-card__icon {
-  color: var(--navy);
+.link-card__icon,
+.link-card__arrow {
+  color: currentColor;
   font-family: Georgia, serif;
-  font-size: 1.55rem;
+  font-size: 1.5rem;
   line-height: 1;
   text-align: center;
 }
-
-.link-card--highlight .link-card__icon,
-.link-card--highlight .link-card__arrow { color: var(--gold); }
 
 .link-card__title {
   padding-inline: .6rem;
   overflow-wrap: anywhere;
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(1.2rem, 5vw, 1.45rem);
+  font-size: clamp(1.25rem, 5vw, 1.5rem);
   font-weight: 600;
   line-height: 1.1;
   text-align: left;
 }
 
-.link-card__arrow {
-  color: var(--navy);
-  font-family: Georgia, serif;
-  font-size: 1.55rem;
-  text-align: center;
-}
-
 .status {
-  padding: 1.5rem;
-  border: 1px solid rgb(7 59 100 / 24%);
-  border-radius: .5rem;
-  color: #48647d;
-  background: rgb(255 255 255 / 62%);
+  padding: 1.25rem;
+  border: 1px solid rgb(243 243 240 / 55%);
+  border-radius: .35rem;
+  color: var(--white);
+  background: rgb(0 31 47 / 58%);
   text-align: center;
+  backdrop-filter: blur(2px);
 }
 
 .retry-button {
@@ -178,66 +135,59 @@ body {
   min-height: 2.75rem;
   margin: 1rem auto 0;
   padding: .65rem 1.1rem;
-  border: 1px solid var(--gold);
-  border-radius: .4rem;
-  color: #fff;
-  background: var(--navy);
+  border: 1px solid var(--white);
+  border-radius: .3rem;
+  color: var(--navy-deep);
+  background: var(--white);
   font: inherit;
   font-weight: 600;
   cursor: pointer;
 }
 
 .footer {
-  position: absolute;
-  z-index: -1;
-  left: 50%;
-  bottom: 0;
-  width: 120vw;
-  min-height: 8.5rem;
-  padding: 5.9rem 1rem 1.25rem;
-  border-top: 1px solid var(--gold);
-  border-radius: 50% 50% 0 0 / 2.8rem 2.8rem 0 0;
-  color: #fff;
-  background: var(--navy-deep);
-  font-size: .82rem;
+  width: min(100%, 19rem);
+  margin: auto auto 0;
+  padding-top: clamp(2.5rem, 8vh, 5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--muted-white);
+  font-size: .72rem;
+  letter-spacing: .04em;
   text-align: center;
-  transform: translateX(-50%);
-  overflow: hidden;
 }
 
-.footer::before {
-  content: "";
-  position: absolute;
-  top: .5rem;
-  left: 50%;
-  width: 97%;
-  height: 2.8rem;
-  border-top: 1px solid var(--gold);
-  border-radius: 50% 50% 0 0 / 2.5rem 2.5rem 0 0;
-  transform: translateX(-50%);
+.footer__logo {
+  display: block;
+  width: min(100%, 13.5rem);
+  height: auto;
+  filter: drop-shadow(0 .35rem .7rem rgb(0 15 24 / 25%));
 }
 
-.footer::after {
-  content: "JK";
-  position: absolute;
-  top: 2.15rem;
-  left: 50%;
-  width: 2.85rem;
-  height: 2.85rem;
-  border: 1px solid var(--gold);
-  border-radius: 50%;
-  color: var(--gold);
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 1.25rem;
-  line-height: 2.75rem;
-  transform: translateX(-50%);
+.footer__text { margin-top: .6rem; }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }
 
 [hidden] { display: none !important; }
 
-@media (min-width: 40rem) {
-  .container { padding-top: 2.7rem; }
-  .link-card { padding-inline: 1.1rem; }
+@media (max-width: 34rem) {
+  .container {
+    width: min(calc(100% - 1.5rem), 38rem);
+    padding-top: 1.4rem;
+  }
+
+  .profile__avatar { width: min(100%, 27rem); }
+  .links { margin-top: 1.5rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

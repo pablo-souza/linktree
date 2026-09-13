@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#073b64">
+    <meta name="theme-color" content="#003a56">
     <meta name="description" content="Centro de Estudos John Knox — conhecimento, fé e formação.">
     <meta property="og:title" content="Centro de Estudos John Knox">
     <meta property="og:description" content="Conhecimento, fé e formação.">
-    <meta property="og:image" content="./assets/brasao-john-knox.jpg">
+    <meta property="og:image" content="./assets/selo-coragem-conviccao.png">
     <title>Centro de Estudos John Knox</title>
     <link rel="stylesheet" href="./css/styles.css">
     <script type="module" src="./js/app.js"></script>
@@ -15,10 +15,9 @@
   <body>
     <main class="container">
       <section id="profile" class="profile" aria-labelledby="profile-title" hidden>
-        <img id="profile-avatar" class="profile__avatar" src="./assets/brasao-john-knox.jpg" alt="" width="176" height="176">
-        <div class="profile__ornament" aria-hidden="true"><span></span></div>
-        <h1 id="profile-title" class="profile__title"></h1>
-        <p id="profile-description" class="profile__description" hidden></p>
+        <img id="profile-avatar" class="profile__avatar" src="./assets/selo-coragem-conviccao.png" alt="" width="1000" height="446">
+        <h1 id="profile-title" class="visually-hidden"></h1>
+        <p id="profile-description" class="visually-hidden" hidden></p>
       </section>
 
       <section class="links" aria-label="Links">
@@ -27,7 +26,10 @@
         <button id="retry-button" class="retry-button" type="button" hidden>Tentar novamente</button>
       </section>
 
-      <footer id="footer" class="footer" hidden></footer>
+      <footer id="footer" class="footer" hidden>
+        <img class="footer__logo" src="./assets/john-knox-branco.png" alt="Centro de Estudos John Knox" width="1000" height="570">
+        <span id="footer-text" class="footer__text"></span>
+      </footer>
     </main>
   </body>
 </html>
