@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { normalizeConfig, normalizeLinks, parseBoolean, validateImageUrl, validateUrl } from '../js/validators.js';
+import { normalizeCards, normalizeConfig, normalizeLinks, parseBoolean, validateImageUrl, validateUrl } from '../js/validators.js';
 
 test('interpreta valores booleanos aceitos', () => {
   for (const value of ['TRUE', 'true', '1', 'sim', 'yes']) assert.equal(parseBoolean(value), true);
@@ -42,4 +42,16 @@ test('filtra e ordena links, deixando ordem inválida por último', () => {
     assert.equal(links[1].highlight, true);
     assert.equal(links[2].order, null);
   } finally { console.warn = originalWarn; }
+});
+
+test('normaliza cards informativos sem exigir URL', () => {
+  const cards = normalizeCards([
+    { order: '2', title: 'Segunda aula', url: '#', enabled: 'TRUE', highlight: 'yes' },
+    { order: '1', title: 'Primeira aula', url: '', enabled: 'sim' },
+    { order: '3', title: 'Oculta', url: '#', enabled: 'FALSE' },
+  ]);
+
+  assert.deepEqual(cards.map(({ title }) => title), ['Primeira aula', 'Segunda aula']);
+  assert.equal(cards[1].highlight, true);
+  assert.equal('url' in cards[0], false);
 });

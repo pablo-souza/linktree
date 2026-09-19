@@ -62,3 +62,29 @@ export function normalizeLinks(rows) {
     return left.sourceIndex - right.sourceIndex;
   });
 }
+
+export function normalizeCards(rows) {
+  return rows.flatMap((row, index) => {
+    const title = String(row.title ?? '').trim();
+    if (!title) {
+      console.warn(`Card ignorado na linha ${index + 2}: título vazio.`);
+      return [];
+    }
+    if (!parseBoolean(row.enabled)) return [];
+
+    const parsedOrder = Number(String(row.order ?? '').trim());
+    return [{
+      order: Number.isFinite(parsedOrder) && String(row.order ?? '').trim() !== '' ? parsedOrder : null,
+      sourceIndex: index,
+      title,
+      icon: String(row.icon ?? '').trim().toLowerCase(),
+      enabled: true,
+      highlight: parseBoolean(row.highlight),
+    }];
+  }).sort((left, right) => {
+    if (left.order === null && right.order !== null) return 1;
+    if (left.order !== null && right.order === null) return -1;
+    if (left.order !== right.order) return (left.order ?? 0) - (right.order ?? 0);
+    return left.sourceIndex - right.sourceIndex;
+  });
+}

@@ -1,12 +1,13 @@
 # Linktree estático com Google Sheets
 
-Página de links sem backend, feita com HTML, CSS e JavaScript puro para hospedagem no GitHub Pages. As configurações e os links são lidos de duas abas públicas de uma planilha Google; assim, o conteúdo pode mudar sem novo deploy.
+Página de links sem backend, feita com HTML, CSS e JavaScript puro para hospedagem no GitHub Pages. As configurações, os links e as aulas são lidos de abas públicas de uma planilha Google; assim, o conteúdo pode mudar sem novo deploy.
 
 ## Arquitetura e arquivos
 
-O navegador busca as abas `config` e `links` em CSV, valida os dados e monta a página com APIs seguras do DOM. Não há credenciais, API key, banco de dados ou processo de build.
+O navegador busca as abas `config`, `links` e `aulas` em CSV, valida os dados e monta as páginas com APIs seguras do DOM. Não há credenciais, API key, banco de dados ou processo de build.
 
-- `index.html`: estrutura semântica e metadata estática;
+- `index.html`: página principal de links;
+- `aulas.html`: página de cards informativos das aulas;
 - `css/styles.css`: layout mobile-first;
 - `js/config.js`: URLs públicas das planilhas;
 - `js/csv.js`: parser CSV;
@@ -16,7 +17,7 @@ O navegador busca as abas `config` e `links` em CSV, valida os dados e monta a p
 
 ## Configurar o Google Sheets
 
-Crie uma planilha com duas abas. Não coloque senhas, dados pessoais confidenciais, tokens ou qualquer segredo: a planilha publicada é pública e somente deve conter o conteúdo exibido no site.
+Crie uma planilha com três abas. Não coloque senhas, dados pessoais confidenciais, tokens ou qualquer segredo: a planilha publicada é pública e somente deve conter o conteúdo exibido no site.
 
 Na aba `config`, use exatamente estas colunas:
 
@@ -38,16 +39,21 @@ order,title,url,icon,enabled,highlight
 3,Instagram,https://instagram.com/exemplo,instagram,TRUE,FALSE
 ```
 
-No Google Sheets, acesse **Arquivo → Compartilhar → Publicar na Web**. Selecione uma aba por vez, escolha **Valores separados por vírgulas (.csv)** e publique. Repita para as abas `config` e `links`.
+Crie também a aba `aulas` com exatamente as mesmas colunas de `links`. Nessa página, os registros são exibidos como cards informativos: `order`, `enabled`, `icon` e `highlight` mantêm a mesma função; `title` aparece no card; e `url` pode ficar vazio ou conter `#`, pois não será clicável nem exibida.
 
-Copie as duas URLs geradas para [`js/config.js`](./js/config.js):
+No Google Sheets, acesse **Arquivo → Compartilhar → Publicar na Web**. Selecione uma aba por vez, escolha **Valores separados por vírgulas (.csv)** e publique. Repita para as abas `config`, `links` e `aulas`.
+
+Copie as três URLs geradas para [`js/config.js`](./js/config.js):
 
 ```js
 export const APP_CONFIG = {
   configSheetUrl: 'URL_CSV_DA_ABA_CONFIG',
   linksSheetUrl: 'URL_CSV_DA_ABA_LINKS',
+  aulasSheetUrl: 'URL_CSV_DA_ABA_AULAS',
 };
 ```
+
+A página de aulas ficará disponível em `aulas.html` — por exemplo, `https://usuario.github.io/repositorio/aulas.html`.
 
 Uma URL publicada costuma se parecer com `https://docs.google.com/spreadsheets/d/e/.../pub?gid=...&single=true&output=csv`. Use a URL final de cada aba, não a URL normal de edição da planilha.
 
@@ -58,7 +64,7 @@ Uma URL publicada costuma se parecer com `https://docs.google.com/spreadsheets/d
 3. Use `TRUE` em `enabled` para mostrar o link e `FALSE` para escondê-lo sem apagar.
 4. Altere `order` para mudar a posição: números menores aparecem primeiro.
 5. Use `TRUE` em `highlight` para marcar o botão como destaque.
-6. Não altere os nomes das colunas nem as abas `config` e `links`.
+6. Não altere os nomes das colunas nem as abas `config`, `links` e `aulas`.
 
 Ícones reconhecidos: `instagram`, `whatsapp`, `youtube`, `github`, `linkedin`, `globe` e `email`. Um ícone genérico aparece para qualquer outro valor. Após salvar a planilha, atualize o site; o Google pode levar alguns instantes para propagar a mudança.
 
@@ -92,7 +98,7 @@ Os caminhos são relativos e o arquivo `.nojekyll` está incluído, portanto o s
 
 Se aparecer “Não foi possível carregar os links”, abra as ferramentas do desenvolvedor do navegador e consulte o Console e a aba Network. Confirme que:
 
-- as duas URLs em `js/config.js` foram substituídas;
+- as três URLs em `js/config.js` foram substituídas;
 - cada URL abre ou baixa CSV sem pedir login;
 - as abas foram publicadas, e não apenas compartilhadas;
 - os cabeçalhos estão escritos corretamente;

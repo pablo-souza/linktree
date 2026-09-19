@@ -120,6 +120,26 @@ body {
   text-align: left;
 }
 
+.info-card {
+  grid-template-columns: 2.75rem 1fr;
+  cursor: default;
+}
+
+.info-card:hover {
+  transform: none;
+  border-color: rgb(243 243 240 / 72%);
+  background: rgb(0 42 63 / 54%);
+  box-shadow: 0 .45rem 1.25rem rgb(0 15 24 / 18%);
+}
+
+.info-card.link-card--highlight:hover { background: var(--white); }
+
+.info-card__title {
+  margin: 0;
+  padding-right: 2.75rem;
+  text-align: center;
+}
+
 .status {
   padding: 1.25rem;
   border: 1px solid rgb(243 243 240 / 55%);
