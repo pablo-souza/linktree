@@ -39,7 +39,7 @@ order,title,url,icon,enabled,highlight
 3,Instagram,https://instagram.com/exemplo,instagram,TRUE,FALSE
 ```
 
-Crie também a aba `aulas` com exatamente as mesmas colunas de `links`. Nessa página, os registros são exibidos como cards informativos: `order`, `enabled`, `icon` e `highlight` mantêm a mesma função; `title` aparece no card; e `url` pode ficar vazio ou conter `#`, pois não será clicável nem exibida.
+Crie também a aba `aulas` com exatamente as mesmas colunas de `links`. Nessa página, os registros são exibidos como cards informativos: `order`, `enabled` e `highlight` mantêm a mesma função; `title` aparece no card; `url` pode ficar vazio ou conter `#`; e `icon` é ignorado porque todos os cards usam um relógio fixo.
 
 No Google Sheets, acesse **Arquivo → Compartilhar → Publicar na Web**. Selecione uma aba por vez, escolha **Valores separados por vírgulas (.csv)** e publique. Repita para as abas `config`, `links` e `aulas`.
 

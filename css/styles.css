@@ -140,6 +140,37 @@ body {
   text-align: center;
 }
 
+.info-card__clock {
+  position: relative;
+  width: 1.35rem;
+  height: 1.35rem;
+  margin-inline: auto;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+}
+
+.info-card__clock::before,
+.info-card__clock::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  width: 1.5px;
+  border-radius: 999px;
+  background: currentColor;
+  transform-origin: bottom center;
+}
+
+.info-card__clock::before {
+  height: .38rem;
+  transform: translateX(-50%);
+}
+
+.info-card__clock::after {
+  height: .3rem;
+  transform: translateX(-50%) rotate(125deg);
+}
+
 .status {
   padding: 1.25rem;
   border: 1px solid rgb(243 243 240 / 55%);

@@ -101,9 +101,8 @@ function renderCards(cards) {
     article.className = `link-card info-card${card.highlight ? ' link-card--highlight' : ''}`;
 
     const icon = document.createElement('span');
-    icon.className = 'link-card__icon';
+    icon.className = 'link-card__icon info-card__clock';
     icon.setAttribute('aria-hidden', 'true');
-    icon.textContent = ICONS[card.icon] || ICONS.link;
     const title = document.createElement('h2');
     title.className = 'link-card__title info-card__title';
     title.textContent = card.title;
